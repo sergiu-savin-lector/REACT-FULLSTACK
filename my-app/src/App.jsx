@@ -1,26 +1,34 @@
-import Alert from './Alert'
+import { Component } from 'react'
 import './App.css'
-import Card from './Card'
-import Card2 from './Card2'
+import Sidebar from './components/Sidebar/Sidebar'
+import Tutors from './components/Tutors/Tutors'
+import University from './components/University/University'
 
-function App() {
+class App extends Component {
 
-  return (
-    <div>
+  tutors = [
+    {
+      id: 1,
+      firstName: "John",
+      lastName: "Smith",
+      telephone: "07123456",
+      email: "johnsmith@company.com",
+      location: "Paris",
+      role: "Administrator",
+    },
+  ];
 
-      <Alert>Mesajul este fara variant!</Alert>
-      <Alert variant='success' isOutlined={true}>Mesajul este cu succes!</Alert>
-      <Alert variant='error'>Mesajul este cu eroare!</Alert>
-
-      <p className='alert warning'>Acest mesaj nu ar trebui sa aiba stilizare</p>
-
-      <Card></Card>
-      <Card2></Card2>
-      <p className='red'>Text cu rosu din app.jsx</p>
-
-      <div className='p-4 bg-yellow-500 my-4'>Text stilizat cu tailwind</div>
-    </div>
-  )
+  render() {
+    return (
+      <main className='App'>
+        <Sidebar/>
+        <section className="container">
+          <University/>
+          <Tutors list={this.tutors}/>
+        </section>
+      </main>
+    )
+  }
 }
 
 export default App
