@@ -73,6 +73,9 @@ class Tutors extends Component {
             role: 'Member',
         }
 
+        /**
+         * Pentru orice state care este un obiect sau array si avem nevoie de starea precedenta, folosim metoda de mai jos
+         */
         this.setState((prevState) => {
             return {
                 list: [...prevState.list, tutorToAdd],
