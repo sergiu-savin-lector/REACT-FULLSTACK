@@ -4,21 +4,33 @@ import Button from "../common/Button/Button";
 import AddTutor from "./AddTutor/AddTutor";
 import Icon from "../common/Icon/Icon";
 
+const TUTORS_KEY = 'tutors';
+
 class Tutors extends Component {
 
     state = {
         isAddFormVisible: false,
-        list: [
-            {
-                id: 0,
-                firstName: "John",
-                lastName: "Smith",
-                telephone: "07123456",
-                email: "johnsmith@company.com",
-                city: "Paris",
-                role: "Administrator",
-            },
-        ]
+        list: []
+    }
+
+    async componentDidMount() {
+        const data = localStorage.getItem(TUTORS_KEY)
+
+        try {
+            if (data) {
+                this.setState({
+                    list: JSON.parse(data)
+                })
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    componentDidUpdate(_prevProps, prevState) {
+        if (prevState?.list.length !== this.state.list.length) {
+            localStorage.setItem(TUTORS_KEY, JSON.stringify(this.state.list))
+        }
     }
 
     renderList = (items) => {
@@ -38,6 +50,10 @@ class Tutors extends Component {
             )
         })
     }
+
+    // componentWillUnmount() {
+    //     console.log('Tutors unmounting...')
+    // }
 
     render() {
         const { isAddFormVisible, list } = this.state;
