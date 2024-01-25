@@ -4,17 +4,19 @@ import Sidebar from './components/Sidebar/Sidebar'
 import Tutors from './components/Tutors/Tutors'
 import University from './components/University/University'
 import Cities from './components/Cities/Cities'
+import Test from './components/Test'
 
 class App extends Component {
 
   render() {
+    // return (<Test />)
     return (
       <main className='App'>
-        <Sidebar/>
+        <Sidebar />
         <section className="container">
-          <University/>
-          <Tutors/>
-          <Cities/>
+          <University />
+          <Tutors />
+          <Cities />
         </section>
       </main>
     )
