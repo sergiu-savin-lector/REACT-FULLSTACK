@@ -1,39 +1,48 @@
-import { Component } from "react";
 import styles from './Tutors.module.css';
 import Button from "../common/Button/Button";
 import AddTutor from "./AddTutor/AddTutor";
 import Icon from "../common/Icon/Icon";
+import { useEffect, useState } from 'react';
+import tutorsService from '../../service/tutorsService'
 
 const TUTORS_KEY = 'tutors';
 
-class Tutors extends Component {
+const Tutors = () => {
 
-    state = {
-        isAddFormVisible: false,
-        list: []
-    }
+    const [isAddFormVisible, setIsAddFormVisible] = useState(false);
+    const [list, setList] = useState([])
+    const [error, setError] = useState('')
+    const [isLoading, setIsloading] = useState(false)
 
-    async componentDidMount() {
-        const data = localStorage.getItem(TUTORS_KEY)
+    // useEffect(() => {
+    //     async function getTutors() {
+    //         const response = await tutorsService.get()
+    //         setList(response)
+    //     }
 
-        try {
-            if (data) {
-                this.setState({
-                    list: JSON.parse(data)
-                })
-            }
-        } catch (error) {
-            console.error(error)
+    //     setIsloading(true)
+
+    //     getTutors()
+    //         .catch(() => {
+    //             setError('A aparut o eroare la obtinerea listei de tutori')
+    //         })
+    //         .finally(() => setIsloading(false))
+    // }, [])
+
+    useEffect(() => {
+        localStorage.setItem(TUTORS_KEY, JSON.stringify(list))
+    }, [list])
+
+
+   const renderList = (items) => {
+        if(!items || !Array.isArray(items)) {
+            return <>Loading...</>
         }
-    }
 
-    componentDidUpdate(_prevProps, prevState) {
-        if (prevState?.list.length !== this.state.list.length) {
-            localStorage.setItem(TUTORS_KEY, JSON.stringify(this.state.list))
+        if(items.length === 0) {
+            return <div>There are no tutors.</div>
         }
-    }
 
-    renderList = (items) => {
         return items.map(el => {
             const name = `${el.firstName} ${el.lastName}`;
 
@@ -51,33 +60,8 @@ class Tutors extends Component {
         })
     }
 
-    // componentWillUnmount() {
-    //     console.log('Tutors unmounting...')
-    // }
-
-    render() {
-        const { isAddFormVisible, list } = this.state;
-        return (
-            <section className="section">
-                <h1>
-                    <Icon variant='cat' label='cat' />
-                    <span>Tutors</span>
-                </h1>
-                <div className={`box ${styles.tutorsList}`}>
-                    {this.renderList(list)}
-                </div>
-                {isAddFormVisible && <AddTutor onFormSubmit={this.handleTutor} />}
-                <Button action={() => {
-                    this.setState({
-                        isAddFormVisible: true
-                    })
-                }}>Add Tutor</Button>
-            </section>
-        )
-    }
-
-    handleTutor = (data) => {
-        const newId = this.state.list.length > 0 ? this.state.list.length : 0;
+   const handleTutor = (data) => {
+        const newId = list.length > 0 ? list.length : 0;
 
         const tutorToAdd = {
             id: newId,
@@ -92,13 +76,27 @@ class Tutors extends Component {
         /**
          * Pentru orice state care este un obiect sau array si avem nevoie de starea precedenta, folosim metoda de mai jos
          */
-        this.setState((prevState) => {
-            return {
-                list: [...prevState.list, tutorToAdd],
-                isAddFormVisible: false
-            }
+
+        setList( prevState => {
+            return [...prevState, tutorToAdd]
         })
+        setIsAddFormVisible(false)
     }
+
+
+    return (
+        <section className="section">
+            <h1>
+                <Icon variant='cat' label='cat' />
+                <span>Tutors</span>
+            </h1>
+            <div className={`box ${styles.tutorsList}`}>
+                {renderList(list)}
+            </div>
+            {isAddFormVisible && <AddTutor onFormSubmit={handleTutor} />}
+            <Button action={() => setIsAddFormVisible(true)}>Add Tutor</Button>
+        </section>
+    )
 }
 
 export default Tutors;

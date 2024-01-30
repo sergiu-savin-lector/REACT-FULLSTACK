@@ -3,46 +3,55 @@ import PropTypes from 'prop-types';
 import styles from './Modal.module.css'
 import { HiX } from "react-icons/hi";
 
-export default class Modal extends Component {
-    static propTypes = {
-        isOpen: PropTypes.bool.isRequired,
-        handleClose: PropTypes.func.isRequired,
-        header: PropTypes.object.isRequired,
-        children: PropTypes.node.isRequired
-    }
+const Modal = ({ isOpen, handleClose, header, children }) => {
 
-    handleEscape(event) {
+   const handleEscape = (event) => {
         if (event.key === 'Escape') {
             console.log("Escape a fost apasat");
-            this.props.handleClose();
+            handleClose();
         }
     }
 
-    render() {
-        const { isOpen, handleClose, header, children } = this.props;
-
-        if (!isOpen) {
-            return;
+    useEffect( () => {
+        if (isOpen) {
+            document.addEventListener('keydown', handleEscape, false)
         }
-        
-        return (
-            <div div className={styles.overlay} >
-                <dialog className={styles.modal}>
-                    <header className={`${styles.header} relative`}>
-                        <button
-                            className={styles.closeBtn}
-                            onClick={() => handleClose()} >
-                            <HiX />
-                        </button>
-                    </header>
-                    <main className={styles.content}>
-                        <h1 className={styles.title}>
-                            {header.icon} {header.label}
-                        </h1>
-                        {children}
-                    </main>
-                </dialog>
-            </div>
-        )
+
+        return () => {
+            document.removeEventListener('keydown', handleEscape, false)
+        }
+    }, [isOpen, handleClose])
+
+    if (!isOpen) {
+        return;
     }
+
+    return (
+        <div div className={styles.overlay} >
+            <dialog className={styles.modal}>
+                <header className={`${styles.header} relative`}>
+                    <button
+                        className={styles.closeBtn}
+                        onClick={() => handleClose()} >
+                        <HiX />
+                    </button>
+                </header>
+                <main className={styles.content}>
+                    <h1 className={styles.title}>
+                        {header.icon} {header.label}
+                    </h1>
+                    {children}
+                </main>
+            </dialog>
+        </div>
+    )
 }
+
+Modal.propTypes = {
+    isOpen: PropTypes.bool.isRequired,
+    handleClose: PropTypes.func.isRequired,
+    header: PropTypes.object.isRequired,
+    children: PropTypes.node.isRequired
+}
+
+export default Modal;
