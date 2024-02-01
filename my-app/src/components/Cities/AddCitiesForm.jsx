@@ -1,46 +1,42 @@
-import { Component } from "react";
+import { useState } from "react";
 import PropTypes from 'prop-types';
 import Button from "../common/Button/Button";
 
-export default class AddCitiesForm extends Component {
+const AddCitiesForm = ({onFormSubmit}) => {
 
-    static propTypes = { onFormSubmit: PropTypes.func }
+    const [name, setName] = useState('')
 
-    state = {
-        name: ""
-    }
-
-    handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        this.props.onFormSubmit(this.state)
+        onFormSubmit({name})
     }
 
-    handleChange = (e) => {
+    const handleChange = (e) => {
         const { value } = e.target;
-
-        this.setState({name: value})
+        setName(value)
     }
 
-    render() {
-        const { name } = this.state;
+    return (
+        <form onSubmit={handleSubmit} className="form">
+            <h1>Adding a city</h1>
+            <label>
+                <span>Adding a city</span>
+                <input
+                    type="text"
+                    value={name}
+                    placeholder="City"
+                    onChange={handleChange}
+                    required
+                />
+            </label>
 
-        return (
-            <form onSubmit={this.handleSubmit} className="form">
-                <h1>Adding a city</h1>
-                <label>
-                    <span>Adding a city</span>
-                    <input
-                        type="text"
-                        value={name}
-                        placeholder="City"
-                        onChange={this.handleChange}
-                        required
-                    />
-                </label>
-
-                <Button type="submit">Add</Button>
-            </form>
-        )
-    }
+            <Button type="submit">Add</Button>
+        </form>
+    )
 }
+
+AddCitiesForm.propTypes = { onFormSubmit: PropTypes.func }
+
+
+export default AddCitiesForm

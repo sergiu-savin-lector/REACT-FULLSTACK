@@ -1,13 +1,17 @@
 import AddCitiesForm from "./AddCitiesForm";
 import Icon from "../common/Icon/Icon";
 import Button from "../common/Button/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ErrorAlert from "../common/ErrorAlert/ErrorAlert";
+import citiesService from '../../service/citiesService';
+
+const CITIES_KEY = 'cities';
 
 const Cities = () => {
     const [isAddFormVisible, setIsAddFormVisible] = useState(false)
     const [list, setList] = useState([])
     const [error, setError] = useState('')
+    const [isLoading, setIsLoading] = useState('false')
 
    const renderList = (list) => {
         if (!list || list.length === 0) {
@@ -22,6 +26,28 @@ const Cities = () => {
             </div>
         ))
     }
+
+    useEffect(() => {
+        async function getCities() {
+            const response = await citiesService.get()
+            setList(response);
+
+            return response;
+        }
+
+        setIsLoading(true)
+        getCities()
+        .catch( error => {
+            console.error(error)
+            setError('A aparut o eroare la obtinera listei de orase')
+
+        })
+        .finally(setIsLoading(false))
+    }, [])
+
+    useEffect( () => {
+        localStorage.setItem(CITIES_KEY, JSON.stringify(list))
+    })
 
    const handleAddItem = (item) => {
         const sortedList = list.sort((a, b) => a.id > b.id)
