@@ -4,11 +4,11 @@ import AddTutor from "./AddTutor/AddTutor";
 import Icon from "../common/Icon/Icon";
 import { useContext, useEffect, useRef, useState } from 'react';
 import tutorsService from '../../service/tutorsService'
-import { ColorContext } from '../../App';
+import { ColorContext } from '../../pages/SharedLayout';
 
 const TUTORS_KEY = 'tutors';
 
-const Tutors = ({propForAddTutor}) => {
+const Tutors = () => {
 
     const contextValue = useContext(ColorContext)
 
@@ -105,7 +105,7 @@ const Tutors = ({propForAddTutor}) => {
             <div className={`box ${styles.tutorsList}`}>
                 {renderList(list)}
             </div>
-            {isAddFormVisible && <AddTutor onFormSubmit={handleTutor} testProp={propForAddTutor} />}
+            {isAddFormVisible && <AddTutor onFormSubmit={handleTutor} />}
             <Button action={() => setIsAddFormVisible(true)}>Add Tutor</Button>
         </section>
     )

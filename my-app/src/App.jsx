@@ -1,32 +1,30 @@
 import './App.css'
-import Sidebar from './components/Sidebar/Sidebar'
-import Tutors from './components/Tutors/Tutors'
-import University from './components/University/University'
-import Cities from './components/Cities/Cities'
-import { createContext, useState } from 'react'
-
-export const ColorContext = createContext('green')
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import SharedLayout from './pages/SharedLayout'
+import HomePage from './pages/HomePage'
+import NotFoundPage from './pages/NotFoundPage'
+import FacultiesPage from './pages/FacultiesPage'
+import FacultyPage from './pages/FacultyPage'
+import FacultyDescription from './components/Faculties/FacultyDescription'
+import FacultyHistory from './components/Faculties/FacultyHistory'
 
 const App = () => {
 
-  const testPropDrilling = 'Informatie din app.jsx';
-  const [color, setColor] = useState('verde')
-
   return (
-    <ColorContext.Provider value={color}>
-      <main className='App'>
-        <Sidebar />
-        <section className="container">
-          <University />
-          <label >
-            <span>Color</span>
-            <input type="text" onChange={ (e) => setColor(e.target.value)}/>
-          </label>
-          <Tutors propForAddTutor={testPropDrilling} />
-          <Cities />
-        </section>
-      </main>
-    </ColorContext.Provider>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<SharedLayout />}>
+          <Route index element={<HomePage />}></Route>
+          <Route path='faculties' element={<FacultiesPage />} />
+          <Route path='faculties/:id' element={<FacultyPage />}>
+            <Route index element={<FacultyDescription/>} />
+            <Route path='description' element={<FacultyDescription/>} />
+            <Route path='history' element={<FacultyHistory/>} />
+          </Route>
+          <Route path='*' element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

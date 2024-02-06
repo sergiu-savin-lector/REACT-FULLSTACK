@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from "../../common/Button/Button";
 
 const AddTutor = (props) => {
-    const { onFormSubmit, testProp } = props;
+    const { onFormSubmit } = props;
 
     const [surname, setSurname] = useState('')
     const [username, setUsername] = useState('')
@@ -46,7 +46,6 @@ const AddTutor = (props) => {
     return (
         <form className="form" onSubmit={handleSubmit}>
             <h1>Add Tutor</h1>
-            <h2>{testProp}</h2>
             <label>
                 <span>Surname</span>
                 <input
