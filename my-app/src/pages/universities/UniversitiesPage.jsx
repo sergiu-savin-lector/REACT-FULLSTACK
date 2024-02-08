@@ -1,9 +1,9 @@
-import University from "../components/University/University";
-import Tutors from "../components/Tutors/Tutors"
-import Cities from "../components/Cities/Cities";
+import University from "./components/University/University";
+import Tutors from "./components/Tutors/Tutors"
+import Cities from "./components/Cities/Cities";
 import { useState } from "react";
 
-function HomePage() {
+function UniversitiesPage() {
     const [, setColor] = useState('verde')
 
     return (
@@ -19,4 +19,4 @@ function HomePage() {
     )
 }
 
-export default HomePage;
+export default UniversitiesPage;

@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react"
 import { NavLink, Outlet, useParams } from "react-router-dom"
-import Error from "../components/common/Error/Error"
-import citiesService from "../service/citiesService"
+import Error from "../../common/components/Error/Error"
+import citiesService from "../../common/service/citiesService"
 
 const FacultyContext = createContext()
 

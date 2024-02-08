@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import citiesService from "../service/citiesService"
-import Error from "../components/common/Error/Error"
+import citiesService from "../common/service/citiesService"
+import Error from "../common/components/Error/Error"
 
 const FacultiesPage = () => {
     const [list, setList] = useState([])

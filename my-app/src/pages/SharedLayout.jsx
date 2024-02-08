@@ -1,5 +1,5 @@
-import { createContext, useState } from "react";
-import Sidebar from "../components/Sidebar/Sidebar";
+import { Suspense, createContext, useState } from "react";
+import Sidebar from "./common/components/Sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
 
 export const ColorContext = createContext('green')
@@ -12,7 +12,9 @@ const SharedLayout = () => {
             <main className='App'>
                 <Sidebar />
                 <section className="container">
-                    <Outlet/>
+                    <Suspense>
+                        <Outlet/>
+                    </Suspense>
                 </section>
             </main>
         </ColorContext.Provider>

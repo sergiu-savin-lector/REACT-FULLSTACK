@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
-import Button from "../../common/Button/Button";
+import Button from "../../../../common/components/Button/Button";
 
 const AddTutor = (props) => {
     const { onFormSubmit } = props;

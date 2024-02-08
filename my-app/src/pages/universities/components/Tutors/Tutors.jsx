@@ -1,10 +1,10 @@
 import styles from './Tutors.module.css';
-import Button from "../common/Button/Button";
+import Button from "../../../common/components/Button/Button";
 import AddTutor from "./AddTutor/AddTutor";
-import Icon from "../common/Icon/Icon";
+import Icon from "../../../common/components/Icon/Icon";
 import { useContext, useEffect, useRef, useState } from 'react';
-import tutorsService from '../../service/tutorsService'
-import { ColorContext } from '../../pages/SharedLayout';
+import tutorsService from '../../../common/service/tutorsService'
+import { ColorContext } from '../../../SharedLayout';
 
 const TUTORS_KEY = 'tutors';
 
