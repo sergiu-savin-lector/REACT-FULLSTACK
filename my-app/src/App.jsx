@@ -19,6 +19,15 @@ const FacultyHistory = lazy( () => import('./pages/faculties/faculty/components/
 
 const App = () => {
 
+  // const object = Object.freeze({
+  //   name: 'Sergiu',
+  //   age: 25
+  // })
+
+  // object.name = 'Alex'
+  // object.zipcode = '500500'
+  // console.log(object)
+
   return (
     <BrowserRouter>
       <Routes>

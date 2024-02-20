@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react"
 import { NavLink, Outlet, useParams } from "react-router-dom"
 import Error from "../../common/components/Error/Error"
 import citiesService from "../../common/service/citiesService"
+import styles from './FacultyPage.module.css'
 
 const FacultyContext = createContext()
 
@@ -44,7 +45,7 @@ const FacultyPage = () => {
 
     return (
         <div>
-            <div>
+            <div className={styles.linksWrapper}>
                 <NavLink to={`/faculties/${id}/description`}>Description</NavLink>
                 <NavLink to={`/faculties/${id}/history`}>History</NavLink>
             </div>
