@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import facultiesService from "../../../common/service/facultiesService";
 import Modal from "../../../common/components/Modal/Modal";
 import Icon from "../../../common/components/Icon/Icon";
-import ErrorAlert from "../../../common/components/ErrorAlert";
+import ErrorAlert from "../../../common/components/ErrorAlert/ErrorAlert";
 import Button from "../../../common/components/Button/Button";
 import AlternateButton from "../../../common/components/Button/AlternateButton";
 import Dropdown from "../../../common/components/Dropdown/Dropdown";
