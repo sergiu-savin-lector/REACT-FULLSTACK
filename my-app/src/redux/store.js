@@ -1,27 +1,43 @@
-import { combineReducers, createStore } from 'redux'
-import { devToolsEnhancer } from '@redux-devtools/extension'
-import { facultiesReducer } from './reducers/facultiesReducer'
+import {configureStore} from '@reduxjs/toolkit';
+import { facultiesSearchTermReducer } from './slices/facultiesSearchTermSlice';
+import { facultiesReducer } from './slices/facultiesSlice';
+import { tutorsReducer } from './slices/tutorsSlice';
+import { citiesReducer } from './slices/citiesSlice';
+import {persistReducer, persistStore} from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
-export const rootReducer = combineReducers({
-    faculties: facultiesReducer
+// In store, pentru fiecare "particica" din state-ul aplicatiei, o sa asignam un reducer care se va ocupa exclusiv
+// de logica pentru acea particica
+/**
+ * OBIECTUL DE STATE VA FI:
+ * {
+ * cities: [...lista de orase],
+ * faculties: [...lista de facultati],
+ * facultiesSearchTerm: "",
+ * tutors: [...lista de tutori]
+ * }
+ */
+
+const persistConfig = {
+    key: 'root',
+    storage
+}
+
+const persistedCities = persistReducer(persistConfig, citiesReducer)
+const persistedFaculties = persistReducer(persistConfig, facultiesReducer)
+const persistedFacultiesSearchTerm = persistReducer(persistConfig, facultiesSearchTermReducer)
+const persistedTutors = persistReducer(persistConfig, tutorsReducer)
+
+const store = configureStore({
+    reducer: {
+        cities: persistedCities,
+        faculties: persistedFaculties,
+        facultiesSearchTerm: persistedFacultiesSearchTerm,
+        tutors: persistedTutors
+    }
 })
 
-// const rootReducer = (state, action) => {
-//     switch (action.type) {
-//         // In functie de tipul actiunii, se va executa o logica diferita
-//         case "faculties/setSearchTerm":
-//             return {
-//                 ...state,
-//                 faculties: {
-//                     ...state.faculties,
-//                     searchTerm: action.payload
-//                 }
-//             };
+const persistor = persistStore(store);
 
-//         default:
-//             return state;
-//     }
-// }
+export default persistor;
 
-const enhancer = devToolsEnhancer()
-export const store = createStore(rootReducer, enhancer)

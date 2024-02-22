@@ -38,10 +38,10 @@ const Tutors = () => {
         localStorage.setItem(TUTORS_KEY, JSON.stringify(list))
     }, [list])
 
-    console.dir(test?.current)
+    // console.dir(test?.current)
 
     useEffect( () => {
-        console.dir(test?.current.scrollWidth)
+        // console.dir(test?.current.scrollWidth)
     }, [])
 
 
