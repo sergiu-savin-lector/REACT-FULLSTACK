@@ -20,7 +20,7 @@ const SearchBar = ({ handleChange, placeholder, searchTerm }) => {
 };
 
 SearchBar.propTypes = {
-  searchTerm: PropTypes.string.isRequired,
+  searchTerm: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
 };

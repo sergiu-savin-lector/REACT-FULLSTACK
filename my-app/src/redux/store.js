@@ -30,14 +30,14 @@ const persistedTutors = persistReducer(persistConfig, tutorsReducer)
 
 const store = configureStore({
     reducer: {
-        cities: persistedCities,
-        faculties: persistedFaculties,
-        facultiesSearchTerm: persistedFacultiesSearchTerm,
-        tutors: persistedTutors
+        cities: citiesReducer,
+        faculties: facultiesReducer,
+        facultiesSearchTerm: facultiesSearchTermReducer,
+        tutors: tutorsReducer
     }
 })
 
 const persistor = persistStore(store);
 
-export default persistor;
+export default store;
 

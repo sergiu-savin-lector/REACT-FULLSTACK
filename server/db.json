@@ -17,6 +17,14 @@
       "email": "john@smith.com",
       "city": "New York",
       "role": "Member"
+    },
+    {
+      "firstName": "asd",
+      "lastName": "asd",
+      "telephone": "asd",
+      "email": "asd@dfsadf.com",
+      "city": "asd",
+      "id": 2
     }
   ],
   "cities": [
