@@ -28,16 +28,18 @@ const persistedFaculties = persistReducer(persistConfig, facultiesReducer)
 const persistedFacultiesSearchTerm = persistReducer(persistConfig, facultiesSearchTermReducer)
 const persistedTutors = persistReducer(persistConfig, tutorsReducer)
 
-const store = configureStore({
+export const store = configureStore({
     reducer: {
-        cities: citiesReducer,
-        faculties: facultiesReducer,
-        facultiesSearchTerm: facultiesSearchTermReducer,
-        tutors: tutorsReducer
-    }
+        cities: persistedCities,
+        faculties: persistedFaculties,
+        facultiesSearchTerm: persistedFacultiesSearchTerm,
+        tutors: persistedTutors
+    },
+    middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    })
 })
 
-const persistor = persistStore(store);
-
-export default store;
+export const persistor = persistStore(store);
 

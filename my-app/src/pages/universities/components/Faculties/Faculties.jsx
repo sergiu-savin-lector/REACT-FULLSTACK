@@ -29,7 +29,7 @@ const Faculties = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const list = useSelector((state) => state.faculties);
+  const list = useSelector((state) => state.faculties.items);
   const searchTerm = useSelector((state) => state.facultiesSearchTerm);
   const dispatch = useDispatch();
 
