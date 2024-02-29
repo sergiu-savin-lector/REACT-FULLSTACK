@@ -5,6 +5,7 @@ import { tutorsReducer } from './slices/tutorsSlice';
 import { citiesReducer } from './slices/citiesSlice';
 import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import { tutorsFilterReducer } from './slices/tutorsFilterSlice';
 
 // In store, pentru fiecare "particica" din state-ul aplicatiei, o sa asignam un reducer care se va ocupa exclusiv
 // de logica pentru acea particica
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
     cities: citiesReducer,
     faculties: facultiesReducer,
     facultiesSearchTerm: facultiesSearchTermReducer,
-    tutors: tutorsReducer
+    tutors: tutorsReducer,
+    tutorsFilter: tutorsFilterReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
