@@ -17,6 +17,22 @@
       "email": "john@smith.com",
       "city": "New York",
       "role": "Member"
+    },
+    {
+      "firstName": "Name 2902",
+      "lastName": "Test 2902",
+      "telephone": "555-555-555",
+      "email": "test@test.com",
+      "city": "London",
+      "id": 2
+    },
+    {
+      "firstName": "Tutor Name",
+      "lastName": "New Tutor",
+      "telephone": "111-111-111",
+      "email": "email@email.test",
+      "city": "Test",
+      "id": 3
     }
   ],
   "cities": [
@@ -27,6 +43,10 @@
     {
       "id": 3,
       "name": "Los Angeles"
+    },
+    {
+      "name": "Bucharest",
+      "id": 4
     }
   ],
   "faculties": [
