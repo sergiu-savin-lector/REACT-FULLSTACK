@@ -39,14 +39,6 @@
     {
       "id": 2,
       "name": "San Francisco"
-    },
-    {
-      "id": 3,
-      "name": "Los Angeles"
-    },
-    {
-      "name": "Bucharest",
-      "id": 4
     }
   ],
   "faculties": [
@@ -69,6 +61,18 @@
       "name": "Faculty",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "history": "What a rich history"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "test@test.com",
+      "password": "bestPassw0rd"
+    },
+    {
+      "email": "test@test.comm",
+      "password": "$2a$10$YIZhLzF6YpXXzRqCVH4jNeYTZI/RcuF1jWglR8VBoMS1CyWMU0vEa",
+      "id": 2
     }
   ]
 }

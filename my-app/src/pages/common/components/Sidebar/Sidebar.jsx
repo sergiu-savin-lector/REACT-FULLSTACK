@@ -16,6 +16,11 @@ const Sidebar = () => {
             name: 'Faculties',
             icon: <HiAcademicCap />,
             path: '/faculties'
+        },
+        {
+            id: '3',
+            name: 'Login',
+            path: '/login'
         }
     ]
 

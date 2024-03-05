@@ -4,8 +4,9 @@ import { facultiesReducer } from './slices/facultiesSlice';
 import { tutorsReducer } from './slices/tutorsSlice';
 import { citiesReducer } from './slices/citiesSlice';
 import { persistReducer, persistStore } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
 import { tutorsFilterReducer } from './slices/tutorsFilterSlice';
+import { authReducer } from './slices/authSlice';
+import storage from 'redux-persist/lib/storage'
 
 // In store, pentru fiecare "particica" din state-ul aplicatiei, o sa asignam un reducer care se va ocupa exclusiv
 // de logica pentru acea particica
@@ -25,6 +26,7 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
+    auth: authReducer,
     cities: citiesReducer,
     faculties: facultiesReducer,
     facultiesSearchTerm: facultiesSearchTermReducer,

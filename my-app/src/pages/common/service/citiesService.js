@@ -1,6 +1,7 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:4001/';
+import setAxiosDefaults from './config';
 
+setAxiosDefaults()
 async function get() {
     const response = await axios.get('/cities/');
 

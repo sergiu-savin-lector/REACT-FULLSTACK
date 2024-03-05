@@ -9,8 +9,10 @@ import { lazy } from 'react'
 
 const FacultiesPage = lazy(() => import('./pages/faculties/FacultiesPage'))
 const FacultyPage = lazy(() => import('./pages/faculties/faculty/FacultyPage'))
-const FacultyDescription = lazy( () => import('./pages/faculties/faculty/components/FacultyDescription'))
-const FacultyHistory = lazy( () => import('./pages/faculties/faculty/components/FacultyHistory'))
+const FacultyDescription = lazy(() => import('./pages/faculties/faculty/components/FacultyDescription'))
+const FacultyHistory = lazy(() => import('./pages/faculties/faculty/components/FacultyHistory'))
+
+const LoginPage = lazy(() => import('./pages/login/LoginPage'))
 
 // import FacultiesPage from './pages/FacultiesPage'
 // import FacultyPage from './pages/FacultyPage'
@@ -32,6 +34,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<SharedLayout />}>
+          <Route path='login' element={<LoginPage />} />
           <Route index element={<UniversitiesPage />}></Route>
           <Route path='faculties' element={<FacultiesPage />} />
           <Route path='faculties/:id' element={<FacultyPage />}>
