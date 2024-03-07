@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../../redux/selectors";
 import Error from "../common/components/Error/Error";
 import { loginUser, registerUser } from "../../redux/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
     const [emailLogin, setEmailLogin] = useState('')
@@ -11,6 +12,8 @@ function LoginPage() {
     const [passwordRegister, setPasswordRegister] = useState('')
 
     const userInfo = useSelector(selectUser)
+
+    const navigate = useNavigate();
 
     const dispatch = useDispatch()
 
@@ -23,7 +26,15 @@ function LoginPage() {
                 password: passwordLogin
             }
             await dispatch(loginUser(payload))
-        } catch (err){
+
+            if (userInfo.isAuthenticated) {
+                navigate('/')
+            } else {
+                setEmailLogin('')
+                setPasswordLogin('')
+            }
+
+        } catch (err) {
             console.error('Failed to login the user ', err)
         }
     }
@@ -37,6 +48,9 @@ function LoginPage() {
         }
 
         await dispatch(registerUser(payload))
+
+        setEmailRegister('')
+        setPasswordRegister('')
     }
 
     const handleLogout = (e) => {
@@ -53,12 +67,13 @@ function LoginPage() {
                 <h2>Login</h2>
                 <label>
                     <span>Email</span>
-                    <input type="text" onChange={(e) => setEmailLogin(e.target.value)} />
+                    <input type="text" onChange={(e) => setEmailLogin(e.target.value)} value={emailLogin} />
                 </label>
 
                 <label>
                     <span>Password</span>
-                    <input type="password" onChange={e => setPasswordLogin(e.target.value)} />
+                    <input type="password"
+                        onChange={e => setPasswordLogin(e.target.value)} value={passwordLogin} />
                 </label>
 
                 <button>Login</button>
@@ -69,12 +84,13 @@ function LoginPage() {
                 <label>
                     <span>Email</span>
                     <input type="text"
-                        onChange={e => setEmailRegister(e.target.value)} />
+                        onChange={e => setEmailRegister(e.target.value)} value={emailRegister} />
                 </label>
 
                 <label>
                     <span>Password</span>
-                    <input type="password" onChange={e => setPasswordRegister(e.target.value)} />
+                    <input type="password"
+                        onChange={e => setPasswordRegister(e.target.value)} value={passwordRegister} />
                 </label>
 
                 <button>Register</button>

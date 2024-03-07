@@ -33,6 +33,14 @@
       "email": "email@email.test",
       "city": "Test",
       "id": 3
+    },
+    {
+      "firstName": "dasf@sdadf",
+      "lastName": "sadf",
+      "telephone": "asdf",
+      "email": "sadf@dsaf",
+      "city": "sadf",
+      "id": 4
     }
   ],
   "cities": [
@@ -73,6 +81,16 @@
       "email": "test@test.comm",
       "password": "$2a$10$YIZhLzF6YpXXzRqCVH4jNeYTZI/RcuF1jWglR8VBoMS1CyWMU0vEa",
       "id": 2
+    },
+    {
+      "email": "test@test1.com",
+      "password": "$2a$10$Qr/qwQvtRFkqRaNfChHLRe3Bc9XJhMcUwx7MNnDs3n0.Ts3KeBtxq",
+      "id": 3
+    },
+    {
+      "email": "asdf@afds",
+      "password": "$2a$10$x6n5pSvptnVLydzrwvj0lOVgVZCLA0Nl07Sp9r7pWCf4qBD9Q2cP6",
+      "id": 4
     }
   ]
 }

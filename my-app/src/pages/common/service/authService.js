@@ -9,7 +9,9 @@ async function login(payload) {
 }
 
 async function register(payload) {
-    return axios.post('/register', payload);
+    const response = await axios.post('/register', payload);
+
+    return response;
 }
 
 async function logout() {
